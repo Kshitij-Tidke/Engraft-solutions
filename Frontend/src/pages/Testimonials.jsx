@@ -17,10 +17,10 @@ export default function Testimonials() {
       {status === "succeeded" && testimonials.length > 0 ? (
         <div className="grid md:grid-cols-2 gap-4">
           {testimonials.map((t) => (
-            <div key={t._id} className="border rounded p-4 shadow">
+            <div key={t._id} className="border rounded p-4 shadow max-h-52 overflow-y-auto">
               <h3 className="font-semibold">{t.name}</h3>
-              <p className="text-gray-600">{t.feedback}</p>
-              {t.rating && <p className="text-yellow-500">⭐ {t.rating}/5</p>}
+              <p className="text-gray-600 whitespace-pre-line">{t.feedback}</p>
+              {t.rating && <p className="text-yellow-500 mt-2">⭐ {t.rating}/5</p>}
             </div>
           ))}
         </div>
