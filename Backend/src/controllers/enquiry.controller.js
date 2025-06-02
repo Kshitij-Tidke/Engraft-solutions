@@ -2,6 +2,7 @@ import { Enquiry } from "../models/enquiry.model.js";
 import nodemailer from "nodemailer";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import validator from "validator";
 
 export const submitEnquiry = async (req, res) => {
   try {
@@ -10,7 +11,11 @@ export const submitEnquiry = async (req, res) => {
     if ([name, email, subject, message].some((field) => !field?.trim())) {
       return res.status(400).json(new ApiError(400, "All fields are required"));
     }
-
+    
+    if (validator.isEmail(email)) {
+      return res.status(400).json(new ApiError(400, "Invalid email"));
+    }
+    
     const enquiry = await Enquiry.create({ name, email, subject, message });
 
     const transporter = nodemailer.createTransport({

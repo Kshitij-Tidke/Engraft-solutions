@@ -37,27 +37,30 @@ export default function SubmitTestimonial() {
       <h2 className="text-2xl font-bold mb-4">Submit a Testimonial</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
+          required
           type="text"
           name="name"
           placeholder="Your Name"
           className="w-full p-2 border rounded"
-          value={formData.name}
+          value={formData.name.trim()}
           onChange={handleChange}
         />
         <textarea
+          required
           name="feedback"
           placeholder="Your Feedback"
           className="w-full p-2 border rounded"
           rows="4"
-          value={formData.feedback}
+          value={formData.feedback.trim()}
           onChange={handleChange}
         />
         <input
+          required
           type="number"
           name="rating"
           placeholder="Rating (1-5)"
           className="w-full p-2 border rounded"
-          value={formData.rating}
+          value={formData.rating.trim()}
           onChange={handleChange}
           min={1}
           max={5}
